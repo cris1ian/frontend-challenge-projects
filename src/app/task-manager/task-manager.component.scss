@@ -1,0 +1,38 @@
+.card-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 5vh;
+}
+
+.card {
+    max-width: 800px;
+    margin: 0px 20px;
+}
+
+.table {
+    width: 100%;
+}
+
+.title {
+    padding: 5px;
+}
+
+.checkbox-container {
+    text-align: center;
+    min-width: 60px;
+}
+
+.actions-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.remove-end-padding {
+    padding-right: 0px !important;
+}
+
+th.mat-header-cell {
+    text-align: center !important;
+}
