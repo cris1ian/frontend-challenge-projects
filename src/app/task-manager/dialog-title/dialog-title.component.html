@@ -2,11 +2,11 @@
 <div mat-dialog-content>
     <mat-form-field appearance="fill" class="input">
         <mat-label>Task title</mat-label>
-        <input required maxlength="100" matInput [(ngModel)]="data.title">
+        <input cdkFocusInitial required maxlength="100" matInput [(ngModel)]="data.title">
     </mat-form-field>
 </div>
 <div mat-dialog-actions align="end">
-    <button mat-button [mat-dialog-close]="" cdkFocusInitial>Cancel</button>
+    <button mat-button [mat-dialog-close]="">Cancel</button>
     <button mat-button [mat-dialog-close]="data.title" [disabled]="!data.title">
         {{data.editing ? "Ok" : "Create"}}
     </button>

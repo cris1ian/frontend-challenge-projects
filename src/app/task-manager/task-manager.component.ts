@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { TaskService } from '../services/task.service';
 import { ITaskBodyCreate, ITaskBodyEdit, Task } from '../models/task';
 import { MatCheckboxChange } from '@angular/material/checkbox';
@@ -6,6 +6,8 @@ import { ErrorHandler } from '../utils/error-handler';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../utils/confirm-dialog/confirm-dialog.component';
 import { DialogData, DialogTitleComponent } from './dialog-title/dialog-title.component';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-task-manager',
@@ -13,8 +15,9 @@ import { DialogData, DialogTitleComponent } from './dialog-title/dialog-title.co
   styleUrls: ['./task-manager.component.scss']
 })
 export class TaskManagerComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'completed', 'title', 'actions'];
-  dataSource: Task[] = [];
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  displayedColumns: string[] = ['completed', 'title', 'actions'];
+  dataSource: MatTableDataSource<Task> = new MatTableDataSource<any>([]);;
   loading: boolean = false;
 
   constructor(
@@ -27,14 +30,18 @@ export class TaskManagerComponent implements OnInit {
     this.getTasks();
   }
 
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
+
   getPendingTasksCount(): number {
-    return this.dataSource.filter(elem => !elem.completed).length;
+    return this.dataSource.data.filter(elem => !elem.completed).length;
   }
 
   getTasks = async (): Promise<void> => {
     this.loading = true;
     try {
-      this.dataSource = await this.taskService.getTasks()
+      this.dataSource.data = await this.taskService.getTasks()
       this.loading = false;
     } catch (error: any) {
       // this.confirmDialog.errorHandler(error, "Some error ocurred while fetching tasks")
