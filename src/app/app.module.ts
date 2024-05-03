@@ -9,11 +9,16 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { TaskService } from './services/task.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './material.module';
+import { ConfirmDialogComponent } from './utils/confirm-dialog/confirm-dialog.component';
+import { DialogTitleComponent } from './task-manager/dialog-title/dialog-title.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     TaskManagerComponent,
+    ConfirmDialogComponent,
+    DialogTitleComponent,
   ],
   imports: [
     BrowserModule,
@@ -21,7 +26,8 @@ import { MaterialModule } from './material.module';
     BrowserAnimationsModule,
     MatSlideToggleModule,
     HttpClientModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule
   ],
   providers: [TaskService],
   bootstrap: [AppComponent]

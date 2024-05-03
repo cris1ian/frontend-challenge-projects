@@ -1,6 +1,6 @@
 export class Task {
     id: number;
-    title: number;
+    title: string;
     completed: boolean;
     userId: number;
 
@@ -13,11 +13,11 @@ export class Task {
 }
 
 export interface ITaskBodyEdit {
-    title?: number;
+    title?: string;
     completed?: boolean;
 }
 
 export interface ITaskBodyCreate {
-    title: number;
+    title: string;
     completed?: boolean;
 }
