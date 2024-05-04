@@ -8,11 +8,11 @@ export class ErrorHandler {
 
     constructor(private snackBar: MatSnackBar) { }
 
-    open(message: string, action: string = 'Close', duration: number = 2000): void {
+    open(message: string, action: string = 'Close', duration: number = 4000): void {
         this.snackBar.open(message, action, {
             duration: duration,
             horizontalPosition: 'end',
-            verticalPosition: 'top',
+            verticalPosition: 'bottom',
         });
     }
 }

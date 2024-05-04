@@ -44,7 +44,7 @@ export class TaskManagerComponent implements OnInit {
       this.dataSource.data = await this.taskService.getTasks()
       this.loading = false;
     } catch (error: any) {
-      // this.confirmDialog.errorHandler(error, "Some error ocurred while fetching tasks")
+      this.errorHandler.open("Couldn't obtain tasks");
       this.loading = false;
     }
   }
@@ -56,7 +56,7 @@ export class TaskManagerComponent implements OnInit {
       this.loading = false;
       return true;
     } catch (error: any) {
-      // this.confirmDialog.errorHandler(error, "Some error ocurred while fetching tasks")
+      this.errorHandler.open("Task could not be edited");
       this.loading = false;
       return false;
     }
@@ -67,7 +67,7 @@ export class TaskManagerComponent implements OnInit {
       await this.taskService.deleteTask(id);
       return true;
     } catch (error: any) {
-      // this.confirmDialog.errorHandler(error, "Some error ocurred while fetching tasks")
+      this.errorHandler.open("Task could not be deleted");
       return false;
     }
   }
@@ -79,7 +79,7 @@ export class TaskManagerComponent implements OnInit {
       this.loading = false;
       return true;
     } catch (error: any) {
-      // this.confirmDialog.errorHandler(error, "Some error ocurred while fetching tasks")
+      this.errorHandler.open("Task could not be created");
       this.loading = false;
       return false;
     }
